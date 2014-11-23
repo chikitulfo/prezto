@@ -5,9 +5,27 @@
 #   Sorin Ionescu <sorin.ionescu@gmail.com>
 #
 
+#Antes que el resto de prezto
+export TERM=xterm-256color
+export DEFAULT_USER=chikitulfo
+export REPORTTIME=5
+export EDITOR=vim 
+
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
+
+## Mis propias opciones de cofiguración
+setopt NO_HUP
+setopt HISTIGNORESPACE
+setopt HISTIGNOREALLDUPS
+setopt EXTENDED_GLOB 
+unsetopt NOMATCH #Envía el patrón al programa si zsh no sabe expandirlo
+
+alias getdbus='export $( grep -Poz "^DBUS_SESSION_BUS_ADDRESS.*$" /proc/$(pgrep -n "(nautilus|pulseaudio|kdeinit|xfdesktop)")/environ )'
+
+#export PATH=".:$HOME/bin:$PATH"
+
