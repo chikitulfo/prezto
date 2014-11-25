@@ -1,0 +1,59 @@
+#
+# Custom prezto prompt.❱❯
+#
+# Authors:
+#   Chikitulfo <https://github.com/chikitulfo>
+#
+
+# fastest possible way to check if repo is dirty
+# from pure
+prompt_pure_git_dirty() {
+	# check if we're in a git repo
+	command git rev-parse --is-inside-work-tree &>/dev/null || return
+	# check if it's dirty
+	[[ "$PURE_GIT_UNTRACKED_DIRTY" == 0 ]] && local umode="-uno" || local umode="-unormal"
+	command test -n "$(git status --porcelain --ignore-submodules ${umode})"
+
+	(($? == 0)) && echo '%F{yellow}⚫%f'
+}
+
+function prompt_chikitulfo_precmd {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+
+  # Get Git repository information.
+  vcs_info
+  prompt_gitinfo=${vcs_info_msg_0_:+${vcs_info_msg_0_}$(prompt_pure_git_dirty)}
+}
+
+function prompt_chikitulfo_setup {
+  setopt LOCAL_OPTIONS
+  unsetopt XTRACE KSH_ARRAYS
+  prompt_opts=(cr percent subst)
+
+  # Load required functions.
+  autoload -Uz add-zsh-hook
+  autoload -Uz vcs_info
+
+  # Add hook for calling git-info before each command.
+  add-zsh-hook precmd prompt_chikitulfo_precmd
+
+  # Set User@machine if user is not $DEFAULT_USER or if in a remote session
+  if [ -n "$SSH_CLIENT" -o "$USER" != "${DEFAULT_USER:-$USER}" ]
+  then
+      prompt_chikitulfo_machine=' %(!.%B%F{red}.%F{4})%n%b%f@%F{20}%m%f'
+  fi
+  
+  # Enable git info
+  zstyle ':vcs_info:*' enable git
+  zstyle ':vcs_info:git*' formats ' %F{5}±%b'
+  
+  #Dots while completing.
+  zstyle ':prezto:module:editor:info:completing' format '%B%F{red}...%f%b'
+
+  PROMPT='%F{blue}%2~%f%B%(!.%F{red}.%F{30})❯%f%b '
+  RPROMPT='${prompt_gitinfo}${prompt_chikitulfo_machine} %(?.%F{green}✔.%F{red}✘)'
+  SPROMPT='zsh: correct %F{red}%R%f to %F{green}%r%f [nyae]? '
+}
+
+prompt_chikitulfo_setup "$@"
