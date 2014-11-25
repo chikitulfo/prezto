@@ -23,6 +23,8 @@ setopt NO_HUP
 setopt HISTIGNORESPACE
 setopt HISTIGNOREALLDUPS
 setopt EXTENDED_GLOB 
+setopt CORRECT #corrige comandos mal puestos
+
 unsetopt NOMATCH #Envía el patrón al programa si zsh no sabe expandirlo
 
 alias getdbus='export $( grep -Poz "^DBUS_SESSION_BUS_ADDRESS.*$" /proc/$(pgrep -n "(nautilus|pulseaudio|kdeinit|xfdesktop)")/environ )'
