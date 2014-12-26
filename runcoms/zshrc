@@ -28,6 +28,9 @@ setopt CORRECT #corrige comandos mal puestos
 unsetopt NOMATCH #Envía el patrón al programa si zsh no sabe expandirlo
 
 alias getdbus='export $( grep -Poz "^DBUS_SESSION_BUS_ADDRESS.*$" /proc/$(pgrep -n "(nautilus|pulseaudio|kdeinit|xfdesktop)")/environ )'
+alias ls='ls --color=auto'
+alias grep='grep --color=auto'
+export PATH=".:$HOME/bin:$PATH"
 
-#export PATH=".:$HOME/bin:$PATH"
-
+# Conexión a gitignore.io para hacer gitignores usando los de github.com/gitignore
+function gitignore() { curl -L -s https://www.gitignore.io/api/$@ ;}
