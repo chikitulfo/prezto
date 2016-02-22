@@ -34,3 +34,6 @@ export PATH=".:$HOME/bin:$PATH"
 
 # Conexión a gitignore.io para hacer gitignores usando los de github.com/gitignore
 function gitignore() { curl -L -s https://www.gitignore.io/api/$@ ;}
+
+#Completar ..<TAB>
+zstyle ':completion:*' special-dirs true
