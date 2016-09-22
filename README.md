@@ -18,7 +18,8 @@ version is 4.3.17.
   2. Clone the repository and set the upstream:
 
         git clone --recursive https://github.com/chikitulfo/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-	git remote add upstream https://github.com/sorin-ionescu/prezto.git	
+        git remote add upstream https://github.com/sorin-ionescu/prezto.git
+        
   3. Create a new Zsh configuration by copying the Zsh configuration files
      provided:
 
