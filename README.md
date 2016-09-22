@@ -1,4 +1,4 @@
-Prezto — Instantly Awesome Zsh
+Prezto — Instantly Awesome Zsh — With some tweaks from chikitulfo
 ==============================
 
 Prezto is the configuration framework for [Zsh][1]; it enriches the command line
@@ -15,10 +15,10 @@ version is 4.3.17.
 
         zsh
 
-  2. Clone the repository:
+  2. Clone the repository and set the upstream:
 
-        git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-
+        git clone --recursive https://github.com/chikitulfo/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+	git remote add upstream https://github.com/sorin-ionescu/prezto.git	
   3. Create a new Zsh configuration by copying the Zsh configuration files
      provided:
 
